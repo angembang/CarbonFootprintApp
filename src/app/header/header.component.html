@@ -1,0 +1,9 @@
+<div class="header">
+   <div class="logo">
+    <h1>🌱 Carbon Footprint App</h1>
+  </div>
+  <div class="user-section">
+    <span *ngIf="userService.isLoggedIn()">Bonjour {{ userService.getUsername() }}!</span>
+    <button *ngIf="userService.isLoggedIn()" (click)="goToProfile()">Mon profil</button>
+  </div>
+</div>

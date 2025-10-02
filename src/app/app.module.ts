@@ -4,11 +4,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TravelCarbonFootprintComponent } from './travel-carbon-footprint/travel-carbon-footprint.component';
+import { ProfileComponent } from './profile/profile.component';
+import { SummaryComponent } from './summary/summary.component';
+import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TravelCarbonFootprintComponent
+    TravelCarbonFootprintComponent,
+    ProfileComponent,
+    SummaryComponent,
+    HomeComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
