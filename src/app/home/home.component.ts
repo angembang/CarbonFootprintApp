@@ -11,8 +11,9 @@ export class HomeComponent {
   constructor(private userService: UserService, private router: Router) {}
 
   loginAndGoToSummary() {
-    this.userService.login('Ange Mbang'); // login with Ange
-    this.router.navigate(['/summary']);
+     const route = this.userService.isLoggedIn() ? '/summary' : '/login';
+     this.router.navigate([route])
+
   }
 
 }

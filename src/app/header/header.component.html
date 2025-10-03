@@ -4,6 +4,17 @@
   </div>
   <div class="user-section">
     <span *ngIf="userService.isLoggedIn()">Bonjour {{ userService.getUsername() }}!</span>
-    <button *ngIf="userService.isLoggedIn()" (click)="goToProfile()">Mon profil</button>
+
+  <ng-container *ngIf="!userService.isLoggedIn(); else loggedIn">
+    <button (click)="goToLogin()">Login</button>
+    <button (click)="goToRegister()">Register</button>
+  </ng-container>
+
+  <ng-template #loggedIn>
+    <button (click)="goToProfile()">Mon profil</button>
+    <button (click)="logout()">Logout</button>
+  </ng-template>
+
   </div>
 </div>
+

@@ -1,0 +1,73 @@
+.travel-form {
+  max-width: 400px;
+  margin: auto;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #f9f9f9;
+   display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+   .travel-fieldset {
+    display: flex;
+    gap: 1rem;
+    padding: 0.5rem;
+    align-items: center;
+  }
+
+  .travel-fieldset label {
+    width: 35%;
+  }
+
+  .travel-fieldset input, .travel-fieldset select {
+    padding: 0.5rem;
+    width: 60%;
+    border-radius: 7px;
+    border: 1px solid #ccc;
+
+  }
+
+  .alt-action {
+    text-align: center;
+    margin-top: 1rem;
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: bold;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .error-message {
+    color: red;
+    margin: 0.5rem 0;
+  }
+
+   button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 10px;
+     border: 1px solid #ccc;
+  }
+
+  button:hover {
+    background-color: #e7e7e7;
+  }
+}

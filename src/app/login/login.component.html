@@ -1,0 +1,40 @@
+<section class="login-form">
+  <h2>Connexion</h2>
+
+  <form (ngSubmit)="login()" #loginForm="ngForm">
+    <div class="login-fieldset">
+      <label for="username">Pseudo :</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        [(ngModel)]="username"
+        required
+        minlength="3"
+      >
+    </div>
+
+    <div class="login-fieldset">
+      <label for="password">Mot de passe :</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        [(ngModel)]="password"
+        required
+        minlength="8"
+      >
+    </div>
+
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <button type="submit">Se connecter</button>
+  </form>
+
+  <p class="alt-action">
+    Pas encore inscrit ?
+    <a routerLink="/register">Créez un compte</a>
+  </p>
+</section>

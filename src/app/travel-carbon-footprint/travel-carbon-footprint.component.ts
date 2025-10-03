@@ -10,35 +10,33 @@ import { CarbonFootprintCompute } from '../services/carbon-footprint-compute';
 export class TravelCarbonFootprintComponent {
   travels: Travel[] = []; // Array of tavels to display
   resume: any; // Objet résumé (distance totale, consommation moyenne, CO2 total)
+  showForm: boolean = false; // For display or not the form
+
 
   // Injection of service for using it in the component
   constructor(private carbonService: CarbonFootprintCompute) {}
 
   // Au moment de l'initialisation du composant
-  ngOnInit(): void {
-    // Retrieve the list of tavels from the service
-    this.travels = this.carbonService.getVoyages();
+   ngOnInit(): void {
+    this.loadTravels();
+  }
 
-    // Calculate the summary (total distance , average comsumption, CO2 total)
+  // Retrieve travels
+  loadTravels() {
+    this.travels = this.carbonService.getVoyages();
     this.resume = this.carbonService.getResumeVoyages();
   }
 
-  // Add a random travel
-  addRandomVoyage(): void {
-    const newVoyage: Travel = {
-      id: Math.random(), // Unique random identifier
-      distanceKm: Math.floor(Math.random() * 500), // distance between 0 et 500 km
-      consumptionPer100km: 5 + Math.random() * 3 // random consumption between 5 et 8 L/100km
-    };
-
-    // Add the new travel to the service
-    this.carbonService.addVoyage(newVoyage);
-
-    // Update the displayed travels list
-    this.travels = this.carbonService.getVoyages();
-
-    // Update the global resume
+  // Close the form when the travel is added
+  onTravelAdded() {
+    this.loadTravels();
     this.resume = this.carbonService.getResumeVoyages();
+    this.showForm = false; // close the form
+  }
+
+  // Button to display the form
+  toggleForm() {
+    this.showForm = !this.showForm;
   }
 
 }

@@ -1,22 +1,33 @@
 <section class="travel-section">
   <h2>Liste des voyages</h2>
-
-  <ul class="travel-list">
+   <!-- If travels list is empty -->
+    <p *ngIf="travels.length === 0">Aucun voyage enrégistré</p>
+    <!-- else -->
+  <ul class="travel-list"
+  *ngIf="travels.length > 0">
     <li *ngFor="let v of travels" class="travel-item">
       <span>Distance: <strong>{{ v.distanceKm }}</strong> km</span> -
-      <span>Conso: <strong>{{ v.consumptionPer100km }}</strong> L/100km</span> -
+      <span *ngIf="v.type === 'voiture'">Conso: <strong>{{ v.consumptionPer100km }}</strong> L/100km</span> -
       <span>CO₂: <strong>{{ v.co2Quantity | number:'1.2-2' }}</strong> kg</span>
     </li>
   </ul>
 
-  <button class="add-btn" (click)="addRandomVoyage()">
-  Ajouter un voyage aléatoire
+  <!-- Button toggle -->
+  <button class="add-btn" (click)="toggleForm()">
+    {{ showForm ? 'Fermer' : 'Ajouter un voyage' }}
   </button>
 
-  <h3>Résumé</h3>
+  <!-- Add carbo footprint form is displayed if toggle = true -->
+  <app-travel-carbon-footprint-form
+    *ngIf="showForm"
+    (voyageAdded)="onTravelAdded()">
+  </app-travel-carbon-footprint-form>
+
+  <h2>Résumé</h2>
   <div class="resume">
     <p><strong>Distance totale :</strong> {{ resume.distanceKm }} km</p>
     <p><strong>Consommation moyenne :</strong> {{ resume.consumptionAverage | number:'1.1-1' }} L/100km</p>
     <p><strong>Quantité totale de CO₂ :</strong> {{ resume.TotalCO2Quantity | number:'1.2-2' }} kg</p>
   </div>
 </section>
+

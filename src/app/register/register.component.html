@@ -1,0 +1,42 @@
+<section class="register-form">
+  <h2>Inscription</h2>
+
+  <form (ngSubmit)="register()" #registerForm="ngForm">
+    <div class="register-fieldset">
+      <label for="username">Pseudo :</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        [(ngModel)]="username"
+        required
+        minlength="3"
+      >
+    </div>
+
+    <div class="register-fieldset">
+      <label for="password">Mot de passe :</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        [(ngModel)]="password"
+        required
+        minlength="8"
+      >
+    </div>
+
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <button type="submit">S'inscrire</button>
+  </form>
+
+  <p class="alt-action">
+    Déjà inscrit ?
+    <a routerLink="/login">Connectez-vous ici</a>
+  </p>
+</section>
+
+
