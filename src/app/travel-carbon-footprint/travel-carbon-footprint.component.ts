@@ -23,14 +23,24 @@ export class TravelCarbonFootprintComponent {
 
   // Retrieve travels
   loadTravels() {
-    this.travels = this.carbonService.getVoyages();
-    this.resume = this.carbonService.getResumeVoyages();
+    //this.travels = this.carbonService.getVoyages();
+    this.carbonService.getVoyages().subscribe(data => {
+      this.travels = data;
+    });
+    //this.resume = this.carbonService.getResumeVoyages();
+    this.carbonService.getResumeVoyages().subscribe(resume => {
+      this.resume = resume;
+    });
+
   }
 
   // Close the form when the travel is added
   onTravelAdded() {
     this.loadTravels();
-    this.resume = this.carbonService.getResumeVoyages();
+    //this.resume = this.carbonService.getResumeVoyages();
+    this.carbonService.getResumeVoyages().subscribe(resume => {
+      this.resume = resume;
+      });
     this.showForm = false; // close the form
   }
 

@@ -28,8 +28,15 @@ export class RegisterComponent implements OnInit {
     this.errorMessage = '';
 
     try {
-      this.userService.register(this.username, this.password);
-      this.router.navigate(['/login']);
+      this.userService.register(this.username, this.password).subscribe({
+        next: () => {
+          this.router.navigate(['/login']);
+        },
+        error: (err) => {
+          this.errorMessage = err.error?.error || "Erreur lors de l'inscription";
+        }
+      });
+    
     } catch (err: any) {
       this.errorMessage = err.message;
     }

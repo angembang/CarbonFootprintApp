@@ -26,9 +26,13 @@ export class TravelCarbonFootprintFormComponent {
     this.errorMessage = '';
 
     try {
-      this.carbonService.addVoyage(this.type, this.distanceKm, this.consumptionPer100km, this.date);
+      /*this.carbonService.addVoyage(this.type, this.distanceKm, this.consumptionPer100km, this.date);
       // Notify the parent that a travel is added for recalculate the summaer
-      this.voyageAdded.emit();
+      this.voyageAdded.emit();*/
+      this.carbonService.addVoyage(this.type, this.distanceKm, this.consumptionPer100km, this.date)
+        .subscribe(() => {
+        this.voyageAdded.emit();
+      });
     } catch (err: any) {
       this.errorMessage = err.message;
     }

@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Travel } from '../models/travelModel';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class CarbonFootprintCompute {
-  private travels: Travel[] = [];
+  private apiUrl = 'http://localhost:3000/api/travels';
+
+  constructor(private http: HttpClient) {}
+  /*private travels: Travel[] = [];
 
   constructor() {
     // Load travels from localStorage
@@ -67,10 +72,27 @@ export class CarbonFootprintCompute {
     this.saveTravels();
 
     return newTravel;
+  }*/
+
+  // Retrieve all travels
+  getVoyages(): Observable<Travel[]> {
+    return this.http.get<Travel[]>(this.apiUrl);
+  }
+
+  addVoyage(
+    type: string,
+    distanceKm: number,
+    consumptionPer100km: number, date: string): Observable<Travel> {
+    return this.http.post<Travel>(
+      this.apiUrl, { type, distanceKm, consumptionPer100km, date
+      });
   }
 
   // Calculate a global resume of travels
-  getResumeVoyages() {
+  getResumeVoyages(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/resume`);
+  }
+ /* getResumeVoyages() {
   let totalDistance = 0;
   let totalConsumption = 0; // Only for car
   let totalCo2 = 0;
@@ -111,4 +133,28 @@ export class CarbonFootprintCompute {
     };
   }
 
+}
+
+
+
+
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CarbonFootprintCompdute {
+  private apiUrl = 'http://localhost:3000/api/travels';
+
+  constructor(private http: HttpClient) {}
+
+  // Récupérer tous les voyages
+  getVoyages(): Observable<Travel[]> {
+    return this.http.get<Travel[]>(this.apiUrl);
+  }
+
+  // Ajouter un voyage
+  addVoyage(type: string, distanceKm: number, consumptionPer100km: number, date: string): Observable<Travel> {
+    return this.http.post<Travel>(this.apiUrl, { type, distanceKm, consumptionPer100km, date });
+  }*/
 }

@@ -34,12 +34,15 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    try {
-      this.userService.login(this.username, this.password);
-      this.router.navigate(['/summary']);
-    } catch (err: any) {
-      this.errorMessage = err.message;
-    }
+    this.userService.login(this.username, this.password).subscribe({
+      next: () => {
+        this.router.navigate(['/summary']);
+      },
+      error: (err) => {
+        this.errorMessage = err.error?.error || "Erreur de connexion"
+      }
+    });
+
   }
 
 }
