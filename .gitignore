@@ -5,6 +5,12 @@
 /tmp
 /out-tsc
 /bazel-out
+node_modules/
+*.log
+.env
+*.tmp
+*.bak
+*.swp
 
 # Node
 /node_modules
@@ -40,3 +46,16 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# -----------Backend-------------------------------------
+/backend/node_modules
+/backend/.env
+/backend/logs
+/backend/temp
+/backend/debug.log
+/backend/npm-debug.log*
+/backend/yarn-error.log
+/backend/package-lock.json
+
+# Compiled output
+/backend/**/*.log
